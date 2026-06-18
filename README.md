@@ -22,6 +22,11 @@ goal_setting_learning_project/
 - 包含拖延診斷、SMART 策略、21 天飛輪承諾、五人圈盤點、文化勾選與下半年行動稿。
 - 表單內容會保存於瀏覽器 localStorage。
 - 可匯出文字作業檔，適合課後回填與追蹤。
+- 頂部導覽含「返回目錄」按鈕，可回到總目錄頁：https://duduflow.github.io/learning_notes_catalog/
+
+## 模板規格
+
+後續每堂課筆記頁都建議保留頂部「返回目錄」按鈕，讓學員可在單堂筆記與總目錄之間來回切換。
 
 ## 使用方式
 

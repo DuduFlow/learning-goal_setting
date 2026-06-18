@@ -83,6 +83,15 @@ button, input, textarea, select { font: inherit; }
   font-weight: 950;
   color: var(--teal-dark);
 }
+.mobile-home {
+  display: none;
+  width: 100%;
+  padding: .75rem 1rem 0;
+}
+.mobile-home .btn {
+  width: 100%;
+  border-radius: .95rem;
+}
 
 .hero {
   position: relative;
@@ -161,6 +170,10 @@ button, input, textarea, select { font: inherit; }
 .btn-light { background: #fff; color: var(--teal-dark); }
 .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,.32); }
 .btn.compact { min-height: 42px; padding: .65rem .9rem; white-space: nowrap; }
+.home-link {
+  border-color: #c6e5d8;
+  box-shadow: none;
+}
 
 .section { padding: clamp(3.8rem, 8vw, 6.6rem) 0; }
 .section.tight { padding: 2rem 0 3rem; }
@@ -492,9 +505,12 @@ textarea.input { min-height: 130px; resize: vertical; line-height: 1.65; }
 }
 
 @media (max-width: 720px) {
-  .topbar { min-height: 68px; }
-  .brand { max-width: 9.5rem; white-space: normal; line-height: 1.2; }
+  .topbar { min-height: 68px; gap: .5rem; justify-content: space-between; }
+  .brand { max-width: calc(100% - 7.4rem); white-space: normal; line-height: 1.2; }
   .nav-progress { display: none; }
+  .home-link { display: none; }
+  .print-link { display: none; }
+  .mobile-home { display: block; }
   .mobile-jump { display: grid; }
   .hero { min-height: 760px; align-items: center; }
   .hero-bg { opacity: .2; object-position: center top; }
