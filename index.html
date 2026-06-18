@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目標設定｜學習教案筆記</title>
+  <meta name="description" content="簡宏鈞處經理目標設定課程筆記：拖延診斷、信心循環、SMART 目標、飛輪效應與行動作業。">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css?v=20260618">
+</head>
+<body>
+  <nav class="topbar no-print">
+    <a class="brand" href="#top">目標設定學習頁</a>
+    <div class="nav-links">
+      <a href="#diagnosis">拖延診斷</a>
+      <a href="#mindset">心態轉換</a>
+      <a href="#confidence">信心循環</a>
+      <a href="#smart">SMART</a>
+      <a href="#flywheel">飛輪</a>
+      <a href="#circle">圈子</a>
+      <a href="#playbook">教案</a>
+    </div>
+    <div class="nav-progress" aria-label="學習進度">
+      <span id="navProgressText">0%</span>
+      <i><b id="navProgressBar"></b></i>
+    </div>
+    <button class="btn btn-soft compact" onclick="window.print()">列印</button>
+  </nav>
 
+  <div class="mobile-jump no-print" aria-label="手機快速導覽">
+    <a href="#diagnosis">診斷</a>
+    <a href="#smart">SMART</a>
+    <a href="#flywheel">飛輪</a>
+    <a href="#playbook">作業</a>
+  </div>
+
+  <header id="top" class="hero">
+    <img src="assets/goal-hero.png" alt="目標拆解成行動路線的原創視覺" class="hero-bg">
+    <div class="hero-shade"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">訓練組課程｜簡宏鈞處經理</p>
+      <h1>目標不是寫在紙上，<br>是拆成今天能做的動作。</h1>
+      <p class="hero-copy">這份筆記把課程逐字稿與講義整合成學習教案：先找出拖延的原因，再用行動建立信心，最後把下半年的目標拆成可執行策略。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#diagnosis">開始檢視自己的目標</a>
+        <a class="btn btn-light" href="#playbook">直接填寫作業</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="progress" class="section tight">
+      <div class="wrap">
+        <div class="dashboard">
+          <div>
+            <p class="label">學習完成度</p>
+            <h2>完成一份真正可執行的下半年目標策略。</h2>
+            <p>完成診斷、SMART、飛輪、圈子盤點與作業後，可以匯出自己的行動稿。</p>
+          </div>
+          <div class="progress-box">
+            <div class="progress-head">
+              <strong id="progressText">0%</strong>
+              <button class="btn btn-primary" onclick="exportPlan()">匯出作業</button>
+            </div>
+            <div class="progress-track"><b id="progressBar"></b></div>
+            <div id="progressList" class="progress-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagnosis" class="section" data-step="diagnosis">
+      <div class="wrap split">
+        <div class="section-lead">
+          <p class="label">一、完成目標最大的剋星</p>
+          <h2>拖延不是不夠強，通常是還沒有找到第一個動作。</h2>
+          <p>課程一開始先拆掉「我不適合」的誤會。真正要處理的不是能力，而是拖延背後的恐懼、期待落差與行動卡點。</p>
+          <blockquote>今天選擇逃避問題，明天往往會變成更棘手的問題。</blockquote>
+        </div>
+        <div class="grid two">
+          <article class="card reason-card">
+            <span>01</span>
+            <h3>不知道從哪裡開始</h3>
+            <p>缺少清楚的第一步，行動就會一直卡住。目標不是先變大，而是先變小。</p>
+          </article>
+          <article class="card reason-card">
+            <span>02</span>
+            <h3>怕丟臉</h3>
+            <p>太在意別人的眼光，會讓腦內劇場先把行動擋下來。</p>
+          </article>
+          <article class="card reason-card">
+            <span>03</span>
+            <h3>怕失敗</h3>
+            <p>擔心全力以赴仍沒有結果，所以乾脆不開始。</p>
+          </article>
+          <article class="card reason-card">
+            <span>04</span>
+            <h3>怕被拒絕</h3>
+            <p>不是不會開口，而是不敢跨出第一通電話或第一個接觸。</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="workshop">
+          <div>
+            <h3>拖延診斷練習</h3>
+            <p>選出你現在最容易卡住的原因，系統會給你一個最小行動。</p>
+          </div>
+          <div class="form-grid">
+            <label>我現在最想完成的事
+              <input id="goalNow" class="input" placeholder="例如：下半年新增 2 位準增員、完成 3C、減重 5 公斤">
+            </label>
+            <label>最像哪一種拖延？
+              <select id="delayType" class="input">
+                <option value="start">不知道從哪裡開始</option>
+                <option value="face">怕丟臉</option>
+                <option value="fail">怕失敗</option>
+                <option value="reject">怕被拒絕</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" onclick="diagnoseDelay()">產生第一步</button>
+          </div>
+          <div id="delayOutput" class="output">填寫後，這裡會出現一個今天就能做的第一步。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mindset" class="section alt" data-step="mindset">
+      <div class="wrap">
+        <div class="center-head">
+          <p class="label">二、成功者的致勝思維</p>
+          <h2>不要等有把握才出手，先出手才會有把握。</h2>
+          <p>講師用綜藝節目借場地、找贊助、發名片累積名單的經驗提醒：多數突破不是因為一開始就會，而是被迫開始後才長出方法。</p>
+        </div>
+        <div class="compare">
+          <div class="compare-col losing">
+            <p>一般人的慣性</p>
+            <h3>等心情到位，等準備完整。</h3>
+            <ul>
+              <li>先腦補被拒絕的畫面</li>
+              <li>把拖延包裝成「再準備一下」</li>
+              <li>遇到任務先問：為什麼又是我？</li>
+            </ul>
+          </div>
+          <div class="compare-col winning">
+            <p>成功者的練法</p>
+            <h3>先開始，邊做邊修正。</h3>
+            <ul>
+              <li>把拒絕視為工作的一部分</li>
+              <li>從每次行動中累積經驗值</li>
+              <li>遇到任務先問：我能學到什麼？</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="confidence" class="section" data-step="confidence">
+      <div class="wrap split">
+        <div class="section-lead">
+          <p class="label">三、信心的真相</p>
+          <h2>信心不是起點，行動才是信心的起點。</h2>
+          <p>課程反覆提醒：不要苛責自己，要在每個環節裡找到能肯定自己的地方。早到、穿整齊、多聊三個人、敢開口，都是可以累積信心的素材。</p>
+        </div>
+        <div class="cycle">
+          <div><b>01</b><span>先行動</span></div>
+          <div><b>02</b><span>得到經驗</span></div>
+          <div><b>03</b><span>復盤修正</span></div>
+          <div><b>04</b><span>讚許自己</span></div>
+          <div><b>05</b><span>能力提升</span></div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="quote-wall">
+          <article>
+            <h3>兒子聽寫 96 分的提醒</h3>
+            <p>高分不是結束，真正的成長來自回頭看錯在哪裡、下一次怎麼記住。</p>
+          </article>
+          <article>
+            <h3>健身房照鏡子的提醒</h3>
+            <p>人需要看見自己正在改變。小小的成就感，會推動下一次行動。</p>
+          </article>
+          <article>
+            <h3>被拒絕的提醒</h3>
+            <p>客戶說不要，不等於你不好。把拒絕從人格否定，改成工作回饋。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="smart" class="section alt" data-step="smart">
+      <div class="wrap split reverse">
+        <div class="method-panel">
+          <div class="method-card"><b>S</b><span>具體</span><p>把想法寫成清楚任務。</p></div>
+          <div class="method-card"><b>M</b><span>衡量</span><p>用數字或頻率看進度。</p></div>
+          <div class="method-card"><b>A</b><span>可達成</span><p>拆成今天能做的動作。</p></div>
+          <div class="method-card"><b>R</b><span>相關</span><p>連回你的真正動機。</p></div>
+          <div class="method-card wide"><b>T</b><span>期限</span><p>讓行動有檢核時間。</p></div>
+        </div>
+        <div class="section-lead">
+          <p class="label">四、SMART 目標黃金法則</p>
+          <h2>把遠大的目標拆成每天能落地的行動。</h2>
+          <p>講義用「年底正選名單 40 人」示範：新增 13 位、每月至少聘 2 人、每週打 518 並約 2 位面試者，最後給出期限。</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="builder">
+          <div class="builder-head">
+            <h3>SMART 策略產生器</h3>
+            <button class="btn btn-soft" onclick="copyText('smartOutput')">複製策略</button>
+          </div>
+          <div class="form-grid smart-grid">
+            <label>S 具體目標<input id="smartS" class="input" placeholder="例如：下半年新增 2 位準增員"></label>
+            <label>M 衡量方式<input id="smartM" class="input" placeholder="例如：每週 5 通招募電話、每月 2 位面試"></label>
+            <label>A 可達成拆解<input id="smartA" class="input" placeholder="例如：每週二晚留下來打 518"></label>
+            <label>R 意義與初衷<input id="smartR" class="input" placeholder="例如：建立團隊，讓收入不只靠個人銷售"></label>
+            <label>T 完成期限<input id="smartT" class="input" placeholder="例如：2026/12/31 前完成"></label>
+            <button class="btn btn-primary" onclick="buildSmart()">產生 SMART 行動稿</button>
+          </div>
+          <div id="smartOutput" class="output">填完 SMART 後，這裡會整理成可以貼到行動筆記裡的策略稿。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flywheel" class="section" data-step="flywheel">
+      <div class="wrap split">
+        <div class="section-lead">
+          <p class="label">五、飛輪效應</p>
+          <h2>前面幾圈最重，但速度會在持續踩踏中長出來。</h2>
+          <p>無論是銷售、招募、運動或開發，一開始都會最累。重點不是立刻看到大成果，而是讓自己連續做，做到行動變成習慣。</p>
+          <blockquote>別高估一天的力量，更別低估一年的改變。</blockquote>
+        </div>
+        <div class="habit-card">
+          <h3>21 天最小習慣</h3>
+          <p>先選一個動作，連續做 21 天。不是為了證明你很強，而是讓身體知道你真的開始了。</p>
+          <label>我的最小行動
+            <input id="tinyHabit" class="input" placeholder="例如：每天打 5 通電話、每天換運動鞋出門、每天約 1 位客戶">
+          </label>
+          <label>每天安排在什麼時間？
+            <input id="habitTime" class="input" placeholder="例如：週一到週五 19:30">
+          </label>
+          <button class="btn btn-primary" onclick="buildHabit()">產生飛輪承諾</button>
+          <div id="habitOutput" class="output subtle">完成後，這裡會出現你的 21 天承諾。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="circle" class="section alt" data-step="circle">
+      <div class="wrap split">
+        <div class="circle-visual" aria-label="五人圈影響力示意">
+          <span class="center-dot">我</span>
+          <span>行動力</span>
+          <span>專業</span>
+          <span>方法</span>
+          <span>提醒</span>
+          <span>格局</span>
+        </div>
+        <div class="section-lead">
+          <p class="label">六、你的圈子，決定你的上限</p>
+          <h2>選對同行者，勝過盲目的苦撐。</h2>
+          <p>你最常接觸的 5 個人，會塑造思維格局、推動未來走向，也會定義收入天花板。遇到問題時，要找能讓你升級的人，而不是一起抱怨的人。</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="builder">
+          <div class="builder-head">
+            <h3>五人圈盤點</h3>
+            <button class="btn btn-soft" onclick="addPerson()">加入一位</button>
+          </div>
+          <div class="form-grid">
+            <label>名字或代稱<input id="personName" class="input" placeholder="例如：開發很強的學長、會保單健診的夥伴"></label>
+            <label>他帶給我的影響
+              <select id="personType" class="input">
+                <option>行動力</option>
+                <option>開發技巧</option>
+                <option>專業形象</option>
+                <option>負面抱怨</option>
+                <option>盲目苦撐</option>
+              </select>
+            </label>
+          </div>
+          <div id="circleList" class="people-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="culture" class="section">
+      <div class="wrap">
+        <div class="center-head">
+          <p class="label">七、文化才是組織真正的底氣</p>
+          <h2>制度可以複製，文化無法抄襲。</h2>
+          <p>講義後段把目標設定拉回組織文化：守時、誠信、專業形象、向上解決問題、彼此成就，都是讓個人目標有環境支撐的底盤。</p>
+        </div>
+        <div class="culture-grid">
+          <label><input class="culture-check" type="checkbox" value="讓團隊因你而更好">讓團隊因你而更好</label>
+          <label><input class="culture-check" type="checkbox" value="時間就是態度">時間就是態度</label>
+          <label><input class="culture-check" type="checkbox" value="會議是團隊最重要的開始">會議是團隊最重要的開始</label>
+          <label><input class="culture-check" type="checkbox" value="誠信是金融業的底線">誠信是金融業的底線</label>
+          <label><input class="culture-check" type="checkbox" value="專業形象就是信用">專業形象就是信用</label>
+          <label><input class="culture-check" type="checkbox" value="自由來自自律">自由來自自律</label>
+          <label><input class="culture-check" type="checkbox" value="問題向上解決">問題向上解決</label>
+          <label><input class="culture-check" type="checkbox" value="孝順、感恩、回饋、負責任">孝順、感恩、回饋、負責任</label>
+        </div>
+      </div>
+    </section>
+
+    <section id="playbook" class="section dark" data-step="playbook">
+      <div class="wrap">
+        <div class="center-head">
+          <p class="label dark-label">教案作業</p>
+          <h2>請把今年最想達成的目標，修正成一份下半年行動稿。</h2>
+          <p>這是課程最後的核心練習：目前完成幾％？剩下要怎麼拆？每天或每週要做什麼？</p>
+        </div>
+        <div class="lesson-grid">
+          <label>今年最想達成的目標<textarea id="finalGoal" class="input dark-input" placeholder="例如：年底前完成 3C、晉升經理、招募 2 位夥伴、減重到 100kg"></textarea></label>
+          <label>目前達成幾％？<textarea id="currentPercent" class="input dark-input" placeholder="例如：目前約 23%，已完成哪些，卡在哪裡"></textarea></label>
+          <label>下週立刻開始的行動<textarea id="nextAction" class="input dark-input" placeholder="例如：週二、週四各打 5 通 518；週三約 1 位夥伴演練；週五復盤"></textarea></label>
+        </div>
+        <div class="lesson-actions">
+          <button class="btn btn-light" onclick="buildFinalPlan()">生成下半年行動稿</button>
+          <button class="btn btn-outline" onclick="copyText('finalOutput')">複製行動稿</button>
+          <button class="btn btn-outline" onclick="resetAll()">重新開始</button>
+        </div>
+        <div id="finalOutput" class="final-output">完成上方欄位後，這裡會生成一份可帶回去執行的目標設定行動稿。</div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast no-print" role="status" aria-live="polite"></div>
+  <script src="js/main.js?v=20260618"></script>
+</body>
+</html>
